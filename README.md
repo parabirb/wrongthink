@@ -1,4 +1,4 @@
-# wrongthink2
+# wrongthink
 wrongthink chat v2:
 * is peer-to-peer
 * has end-to-end encryption (Axolotl Ratchet over PeerJS)
