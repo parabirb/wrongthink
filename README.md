@@ -4,12 +4,13 @@ wrongthink chat v2:
 * has end-to-end encryption (Axolotl Ratchet over PeerJS)
 * supports Markdown
 * has notifications using MaterializeCSS
+* is verifiable
 
 ## how are things derived
 ### fingerprint
-the fingerprint used for connection is derived from the SHA-512 hash of the public key. the fingerprint is converted to decimal and then the first 10 digits are taken (allowing for 10 billion combinations).
+the fingerprint used for connection is derived from the SHA-512 hash of the public key. the fingerprint is converted into 4 words (with a word list of 256 words), allowing for 4294967296 (2^32) combinations.
 ### safety number
-the safety number is derived from `SHA512(xPublic + yPublic)`, where both keys are the identity keys of the peers. the hash is converted to decimal and then the first 35 digits are taken (allowing for approximately 120 bits of security). the order of the fingerprints is determined by the first byte of the public identity keys.
+the safety number is derived from `SHA512(xPublic + yPublic)`, where both keys are the identity keys of the peers. the hash is converted to 16 words (with a word list of 256 words), allowing for 128 bits of security. the order of the fingerprints is determined by the first byte of the public identity keys.
 
 ## custom clients
 custom clients are as easy as 1, 2, 3. just use PeerJS and use https://wrongthink.me:8080 as the PeerJS server. from there, you'll need to use forward-secrecy to handshake and send messages.
