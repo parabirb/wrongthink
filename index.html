@@ -294,11 +294,11 @@ See /help for help<br>`);
                         .theirHandshake(theirHandshakeKey)
                         .setRole("receiver")
                         .computeMasterKey();
-                    // set safety number to a 35 digit string of decimal digits
+                    // set safety number to a 16 words (128 bits)
                     // from nacl.hash(greatestFirstByte, leastFirstByte)
-                    safetyNumber = Array.from(nacl.hash(new Uint8Array(theirIdentityKey > ourKeys.identityKey.publicKey ?
+                    safetyNumber = toHexString(nacl.hash(new Uint8Array(theirIdentityKey > ourKeys.identityKey.publicKey ?
                         [...theirIdentityKey, ...ourKeys.identityKey.publicKey] : [...ourKeys.identityKey.publicKey, ...theirIdentityKey]
-                    ))).map(b => b.toString(10).padStart(2, "0")).join("").slice(0, 35);
+                    )).slice(0, 128));
                     safetyNumber = safetyNumber.replace(/(.{5})/g, "$1 ");
                     // we've handshaked
                     handshaked = true;
