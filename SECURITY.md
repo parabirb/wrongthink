@@ -4,4 +4,4 @@ vulnerabilities in previous versions of wrongthink are low priority and can be r
 
 # security promise
 
-wrongthink.me guarantees the confidentiality and integrity of all past messages sent over wrongthink with versions 2.3.0 and above.
+wrongthink.me guarantees the confidentiality and integrity of all past messages sent over wrongthink with versions 2.3.0 and above for at least 3 years.
