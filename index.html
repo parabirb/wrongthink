@@ -362,7 +362,7 @@ See /help for help<br>`);
                         return;
                     }
                 }
-                fingerprint = convertToWords(nacl.hash(ourKeys.identityKey.publicKey).slice(0, 4)).replace(/ /g, "-");
+                fingerprint = convertToWords(nacl.hash(ourKeys.identityKey.publicKey).slice(0, 8)).replace(/ /g, "-");
             })();
             // if fingerprint is specified, set it
             else fingerprint = specifiedFingerprint;
@@ -495,7 +495,7 @@ See /help for help<br>`);
                         // display the result
                         M.toast({
                                  // our calculated fingerprint                                                           eq. peer's fingerprint
-                            "html": convertToWords(nacl.hash(session._identityKeys.recv).slice(0, 4)).replace(/ /g, "-") === connection.peer ? "Fingerprint verified." : "Could not verify fingerprint."
+                            "html": convertToWords(nacl.hash(session._identityKeys.recv).slice(0, 8)).replace(/ /g, "-") === connection.peer ? "Fingerprint verified." : "Could not verify fingerprint."
                         });
                         return;
                     }
