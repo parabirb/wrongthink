@@ -12,6 +12,8 @@ wrongthink chat v2:
 
 ### this codebase is not audited and you are using this messenger at your own risk.
 
+i do accept vulnerability reports (parabirb@protonmail.ch / @parabirb Twitter / parabirb#9968 Discord) and will patch them ASAP, but i cannot guarantee that wrongthink.me is secure.
+
 ## how are things derived
 ### fingerprint
 the fingerprint used for connection is derived from the SHA-512 hash of the public key. the fingerprint is converted into 8 words (with a word list of 256 words), allowing for 2^64 combinations. this makes it somewhat suitable for identity verification but **it is not recommended unless security is not a concern**.
