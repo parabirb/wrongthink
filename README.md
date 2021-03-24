@@ -1,6 +1,6 @@
 # wrongthink
 
-![threat model](threat model.png)
+![threat model](https://raw.githubusercontent.com/parabirb/wrongthink/master/threat%20model.png)
 
 wrongthink chat v2:
 * is peer-to-peer
