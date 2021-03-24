@@ -1,13 +1,16 @@
 # wrongthink
 
-![threat model](https://raw.githubusercontent.com/parabirb/wrongthink/master/threat%20model.png)
-
 wrongthink chat v2:
 * is peer-to-peer
 * has end-to-end encryption (Axolotl Ratchet over PeerJS)
 * supports Markdown
 * has notifications using MaterializeCSS
 * is verifiable
+
+## security
+![threat model](https://raw.githubusercontent.com/parabirb/wrongthink/master/threat%20model.png)
+
+# this codebase is not audited and you are using this messenger at your own risk.
 
 ## how are things derived
 ### fingerprint
