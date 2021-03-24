@@ -1,4 +1,7 @@
 # wrongthink
+
+![threat model](threat model.png)
+
 wrongthink chat v2:
 * is peer-to-peer
 * has end-to-end encryption (Axolotl Ratchet over PeerJS)
