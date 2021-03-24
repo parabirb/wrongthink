@@ -10,7 +10,7 @@ wrongthink chat v2:
 ## security
 ![threat model](https://raw.githubusercontent.com/parabirb/wrongthink/master/threat%20model.png)
 
-# this codebase is not audited and you are using this messenger at your own risk.
+### this codebase is not audited and you are using this messenger at your own risk.
 
 ## how are things derived
 ### fingerprint
