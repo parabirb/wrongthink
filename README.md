@@ -30,6 +30,8 @@ just open `index.html` in the browser of your choice.
 `v2.0.html` is the old version of wrongthink2 which used OTRv3. it is now obsolete (NOT compatible with any new clients) and kept only for educational purposes. `v1.html` is the old version of wrongthink which was not E2EE. it is still usable with server `wss://wrongthink.me:9764` but not recommended. it is also kept only for educational purposes.
 
 ## legal
+```
 >implying i give a shit about export regulations
+```
 
 no warranty is provided with this software and you waive all liability blah blah blah do whatever you want with this software idgaf
