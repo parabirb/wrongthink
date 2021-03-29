@@ -35,3 +35,6 @@ just open `index.html` in the browser of your choice.
 ```
 
 no warranty is provided with this software and you waive all liability blah blah blah do whatever you want with this software idgaf
+
+## WOKE!!!
+no political pandering will ever take place on the site or in the repo. wrongthink will always be wrongthink and nothing more.
