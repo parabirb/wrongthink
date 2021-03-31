@@ -2,7 +2,7 @@
 
 wrongthink chat v2:
 * is peer-to-peer
-* has end-to-end encryption (Axolotl Ratchet over PeerJS)
+* has end-to-end encryption (Double Ratchet over PeerJS)
 * supports Markdown
 * has notifications using MaterializeCSS
 * is verifiable

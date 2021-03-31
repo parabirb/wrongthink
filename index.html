@@ -100,22 +100,24 @@ Send support inquiries to parabirb@protonmail.ch
     <script src="https://wrongthink.me/emoji.min.js"></script>
     <!-- security deps -->
     <script src="https://cdn.jsdelivr.net/gh/jitbit/HtmlSanitizer@master/HtmlSanitizer.js"></script>
-    <script src="https://wrongthink.me/axolotl-bundle.js"></script>
+    <script src="https://wrongthink.me/nacl-fast.min.js" crossorigin="anonymous" integrity="sha384-05+sicyRJQ56XpL4U9HJ8YbtSzFDvAg7apPKOGV6A0JsAJKFM68jp5oLnUjG5mEp"></script>
+    <script src="https://wrongthink.me/nacl-auth.min.js" crossorigin="anonymous" integrity="sha384-VF/KRNGsf9vni895ILcbiO4SzSsXzwabfsur/VKSxDeptyiyWlXMrbhuEAtUc4a7"></script>
+    <script src="https://wrongthink.me/nacl-util.min.js" crossorigin="anonymous" integrity="sha384-qpU3wxGxaAPcz02pOLeZTv5B0rNzsh3CETsUqdHxRBP70bO0kHoBopr+f9AcGj04"></script>
+    <script src="https://wrongthink.me/double-ratchet.js" crossorigin="anonymous" integrity="sha384-UibelnZtPAmnoYOoNu1uOkl5jnX/6sp7C+42xZJeDGT7FWZexLCl4U2/W7swWhMI"></script>
     <!-- networking deps -->
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script>
         // version
-        const version = "arachat v2.3.0-wrongthink";
+        const version = "arachat v2.4.0-wrongthink";
         // changelog
         const changelog = `<b>Last changes made ${document.lastModified.split(" ")[0]} - ${version}</b><br><br>
 Changed:
 <ul class="collection">
-<li class="collection-item grey darken-2 grey-text text-lighten-5">Changed safety number/fingerprint generation (BREAKING)</li>
-<li class="collection-item grey darken-2 grey-text text-lighten-5">Added fingerprint verification</li>
+<li class="collection-item grey darken-2 grey-text text-lighten-5">Changed double ratchet implementation (BREAKING)</li>
 </ul>
 Changing in next release:
 <ul class="collection">
-<li class="collection-item grey darken-2 grey-text text-lighten-5">Not yet decided</li>
+<li class="collection-item grey darken-2 grey-text text-lighten-5">Tons of stuff ;)</li>
 </ul>`;
     </script>
     <script>
