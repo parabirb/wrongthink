@@ -15,28 +15,50 @@ or parabirb#9968
 <head>
     <meta charset="utf-8">
     <title>wrongthink</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
         /* don't screw with the CSS until you have a plan */
+
+        /* helvetica clone (nimbus sans l) and nimbus mono */
+        @font-face {
+            font-family: "nimbus-sans";
+            src: url("https://wrongthink.me/nimbus-sans-l.bold.otf") format("opentype");
+        }
+
+        @font-face {
+            font-family: "nimbus-sans-text";
+            src: url("https://wrongthink.me/nimbus-sans-l.regular.otf") format("opentype");
+        }
+
+        @font-face {
+            font-family: "nimbus-mono";
+            src: url("https://wrongthink.me/nimbus-mono.bold.otf") format("opentype");
+        }
+
         body {
             display: flex;
             min-height: 100vh;
             flex-direction: column;
             color: white;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'nimbus-sans-text', Helvetica, sans-serif;
             min-height: 100vh;
+        }
+
+        strong, b {
+            font-family: 'nimbus-sans', Helvetica, sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6, .brand-logo {
+            font-family: 'nimbus-sans';
         }
 
         main {
             /* flex: 1 0 auto; */
             max-height: 75vh;
             margin: 1vw;
+            font-size: 1.25rem;
             overflow: scroll;
-            font-family: 'Roboto Mono', monospace;
             vertical-align: bottom;
             overflow-wrap: break-word;
             overflow-x: hidden;
@@ -48,9 +70,13 @@ or parabirb#9968
             margin: 1vw;
         }
 
-        input,
-        textarea {
-            font-family: monospace;
+        input {
+            font-family: 'nimbus-sans-text', Helvetica, sans-serif;
+        }
+
+        textarea,
+        code {
+            font-family: 'nimbus-mono', monospace;
         }
 
         img.emoji {
@@ -67,352 +93,362 @@ or parabirb#9968
 </head>
 
 <body class="grey darken-4 grey-text text-lighten-5">
-    <!-- navbar -->
-    <nav class="grey darken-3">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">wrongthink</a>
-        </div>
-    </nav>
-    <main id="terminal">
-        <!-- notice here while the key loads -->
-        Please wait while your Axolotl key generates.<br>
-    </main>
-    <!-- input and changelog -->
-    <footer>
-        <input id="message" type="text" placeholder="Enter a message or command..." value="" autofocus
-            class="grey-text text-lighten-5">
-        <h6 style="text-align: center"><a href="#" onclick="dispChanges()">changelog</a></h6>
-    </footer>
-    <!-- modal for displaying content -->
-    <div id="modal1" class="modal grey darken-4">
-        <div class="modal-content">
-            <h4 id="header">Modal Header</h4>
-            <p id="text">A bunch of text</p>
-        </div>
-        <div class="modal-footer grey darken-4">
-            <a href="#!" class="modal-close btn-flat grey-text text-lighten-5">Close</a>
-        </div>
+<!-- navbar -->
+<nav class="grey darken-3">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">wrongthink</a>
     </div>
-    <!-- materialize/ui deps -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://wrongthink.me/emoji.min.js"></script>
-    <!-- security deps -->
-    <script src="https://cdn.jsdelivr.net/gh/jitbit/HtmlSanitizer@master/HtmlSanitizer.js"></script>
-    <script src="https://wrongthink.me/nacl-fast.min.js" crossorigin="anonymous" integrity="sha384-05+sicyRJQ56XpL4U9HJ8YbtSzFDvAg7apPKOGV6A0JsAJKFM68jp5oLnUjG5mEp"></script>
-    <script src="https://wrongthink.me/nacl-auth.min.js" crossorigin="anonymous" integrity="sha384-VF/KRNGsf9vni895ILcbiO4SzSsXzwabfsur/VKSxDeptyiyWlXMrbhuEAtUc4a7"></script>
-    <script src="https://wrongthink.me/nacl-util.min.js" crossorigin="anonymous" integrity="sha384-qpU3wxGxaAPcz02pOLeZTv5B0rNzsh3CETsUqdHxRBP70bO0kHoBopr+f9AcGj04"></script>
-    <script src="https://wrongthink.me/double-ratchet.js" crossorigin="anonymous" integrity="sha384-5ZTmjyky8FuzhsXZqu+je0pwJe999QKDi7ThlyXJ+oqluAYFzLs/xwdEV1+Xpm54"></script>
-    <!-- networking deps -->
-    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-    <script>
-        // version
-        const version = "arachat v2.4.0-wrongthink";
-        // changelog
-        const changelog = `<b>Last changes made ${document.lastModified.split(" ")[0]} - ${version}</b><br><br>
+</nav>
+<main id="terminal">
+    <!-- notice here while the key loads -->
+    Please wait while your Axolotl key generates.<br>
+</main>
+<!-- input and changelog -->
+<footer>
+    <input id="message" type="text" placeholder="Enter a message or command..." value="" autofocus
+           class="grey-text text-lighten-5">
+    <h6 style="text-align: center"><a href="#" onclick="dispChanges()">changelog</a></h6>
+</footer>
+<!-- modal for displaying content -->
+<div id="modal1" class="modal grey darken-4">
+    <div class="modal-content">
+        <h4 id="header">Modal Header</h4>
+        <p id="text">A bunch of text</p>
+    </div>
+    <div class="modal-footer grey darken-4">
+        <a href="#!" class="modal-close btn-flat grey-text text-lighten-5">Close</a>
+    </div>
+</div>
+<!-- materialize/ui deps -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.0.4/markdown-it.min.js"></script>
+<script src="https://wrongthink.me/emoji.min.js"></script>
+<!-- security deps -->
+<script src="https://cdn.jsdelivr.net/gh/jitbit/HtmlSanitizer@master/HtmlSanitizer.js"></script>
+<script src="https://wrongthink.me/nacl-fast.min.js" crossorigin="anonymous"
+        integrity="sha384-05+sicyRJQ56XpL4U9HJ8YbtSzFDvAg7apPKOGV6A0JsAJKFM68jp5oLnUjG5mEp"></script>
+<script src="https://wrongthink.me/nacl-auth.min.js" crossorigin="anonymous"
+        integrity="sha384-VF/KRNGsf9vni895ILcbiO4SzSsXzwabfsur/VKSxDeptyiyWlXMrbhuEAtUc4a7"></script>
+<script src="https://wrongthink.me/nacl-util.min.js" crossorigin="anonymous"
+        integrity="sha384-qpU3wxGxaAPcz02pOLeZTv5B0rNzsh3CETsUqdHxRBP70bO0kHoBopr+f9AcGj04"></script>
+<script src="https://wrongthink.me/double-ratchet.js" crossorigin="anonymous"
+        integrity="sha384-5ZTmjyky8FuzhsXZqu+je0pwJe999QKDi7ThlyXJ+oqluAYFzLs/xwdEV1+Xpm54"></script>
+<!-- networking deps -->
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<script>
+    // version
+    const version = "arachat v2.4.1-wrongthink";
+    // changelog
+    const changelog = `<b>Last changes made ${document.lastModified.split(" ")[0]} - ${version}</b><br><br>
 Changed:
 <ul class="collection">
-<li class="collection-item grey darken-2 grey-text text-lighten-5">Changed double ratchet implementation (BREAKING)</li>
+<li class="collection-item grey darken-2 grey-text text-lighten-5">Markdown parser (removed HTML support)</li>
+<li class="collection-item grey darken-2 grey-text text-lighten-5">Fonts</li>
 </ul>
 Changing in next release:
 <ul class="collection">
 <li class="collection-item grey darken-2 grey-text text-lighten-5">Tons of stuff ;)</li>
 </ul>`;
-    </script>
-    <script>
-        // check if storage works
-        function storageAvailable(type) {
-            let storage = null;
-            try {
-                storage = window[type];
-                let x = '__storage_test__';
-                storage.setItem(x, x);
-                storage.removeItem(x);
-                return true;
-            } catch (e) {
-                return e instanceof DOMException && (
-                    e.code === 22 ||
-                    e.code === 1014 ||
-                    e.name === 'QuotaExceededError' ||
-                    e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-                    (storage && storage.length !== 0);
-            }
+</script>
+<script>
+    // check if storage works
+    function storageAvailable(type) {
+        let storage = null;
+        try {
+            storage = window[type];
+            let x = '__storage_test__';
+            storage.setItem(x, x);
+            storage.removeItem(x);
+            return true;
+        } catch (e) {
+            return e instanceof DOMException && (
+                e.code === 22 ||
+                e.code === 1014 ||
+                e.name === 'QuotaExceededError' ||
+                e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+                (storage && storage.length !== 0);
         }
-    </script>
-    <script>
-        // display changelog
-        function dispChanges() {
-            // set modal header
-            $("#header").html("Changelog");
-            // set modal text
-            $("#text").html(changelog);
-            // open modal
-            $("#modal1").modal("open");
-        }
-    </script>
-    <script>
-        // funcs to convert Uint8Arrays to hex and back for storage
-        const fromHexString = hexString =>
-            new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+    }
+</script>
+<script>
+    // display changelog
+    function dispChanges() {
+        // set modal header
+        $("#header").html("Changelog");
+        // set modal text
+        $("#text").html(changelog);
+        // open modal
+        $("#modal1").modal("open");
+    }
+</script>
+<script>
+    // funcs to convert Uint8Arrays to hex and back for storage
+    const fromHexString = hexString =>
+        new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
 
-        const toHexString = bytes =>
-            bytes.reduce((str, byte) => str + byte.toString(16).padStart(2, '0'), '');
-    </script>
-    <script>
-        // funcs to convert Uint8Arrays to words and back for usability
-        const wordList = ["dawn", "pet", "gas", "older", "putting", "village", "mine", "away", "industrial", "care", "metal", "coach", "few", "orbit", "wait", "dish", "evening", "upon", "military", "plastic", "palace", "tiny", "principle", "sang", "girl", "move", "ten", "fox", "began", "tone", "ought", "money", "rocky", "lungs", "strength", "expression", "clean", "take", "standard", "plan", "my", "shown", "pilot", "swim", "building", "throat", "grabbed", "thank", "phrase", "been", "peace", "keep", "species", "go", "thing", "obtain", "ago", "bet", "same", "screen", "excited", "jet", "camp", "either", "experience", "scale", "also", "claws", "fix", "job", "engineer", "lips", "system", "use", "successful", "vapor", "car", "small", "partly", "swing", "thick", "level", "flow", "rod", "great", "moon", "worth", "band", "science", "low", "satellites", "material", "extra", "spent", "so", "imagine", "easy", "depth", "southern", "wooden", "troops", "leg", "respect", "leaving", "stranger", "triangle", "grade", "salt", "man", "within", "feel", "felt", "grow", "health", "manner", "smell", "blood", "hunt", "your", "perfect", "instrument", "blew", "design", "try", "charge", "firm", "yet", "do", "locate", "fairly", "cap", "wonderful", "exactly", "forgot", "it", "dinner", "forest", "sent", "plural", "origin", "left", "vowel", "source", "boat", "example", "surrounded", "put", "pictured", "action", "anywhere", "simply", "though", "rubber", "image", "moment", "power", "today", "anyone", "bag", "during", "quarter", "pleasure", "pitch", "each", "eleven", "private", "support", "birth", "observe", "explanation", "case", "outline", "temperature", "itself", "west", "upward", "visit", "alike", "table", "contrast", "fewer", "giving", "language", "return", "donkey", "duck", "six", "fallen", "doctor", "save", "figure", "party", "suggest", "wrong", "bowl", "green", "wool", "length", "teach", "gift", "ball", "characteristic", "season", "taken", "thumb", "dull", "around", "expect", "cowboy", "lunch", "calm", "chief", "model", "some", "meat", "teacher", "near", "belong", "him", "high", "speech", "zebra", "dig", "warm", "our", "color", "four", "cost", "fifth", "store", "swept", "seed", "worried", "worker", "prevent", "smaller", "pond", "driving", "spend", "noon", "airplane", "pair", "shoulder", "sharp", "thought", "rhythm", "end", "indicate", "income", "due", "treated", "rough", "deeply", "instead", "while", "laid"];
-        const convertToWords = (bytes) => {
-            let words = [];
-            for (let byte of bytes) {
-                words.push(wordList[byte]);
-            }
-            return words.join(" ");
-        };
-        const convertFromWords = (words) => {
-            let arr = [];
-            let wordArray = words.split(" ");
-            if (wordArray.length !== 32) return;
-            for (let word of wordArray) {
-                arr.push(wordList.indexOf(word));
-            }
-            return new Uint8Array(arr);
+    const toHexString = bytes =>
+        bytes.reduce((str, byte) => str + byte.toString(16).padStart(2, '0'), '');
+</script>
+<script>
+    // funcs to convert Uint8Arrays to words and back for usability
+    const wordList = ["dawn", "pet", "gas", "older", "putting", "village", "mine", "away", "industrial", "care", "metal", "coach", "few", "orbit", "wait", "dish", "evening", "upon", "military", "plastic", "palace", "tiny", "principle", "sang", "girl", "move", "ten", "fox", "began", "tone", "ought", "money", "rocky", "lungs", "strength", "expression", "clean", "take", "standard", "plan", "my", "shown", "pilot", "swim", "building", "throat", "grabbed", "thank", "phrase", "been", "peace", "keep", "species", "go", "thing", "obtain", "ago", "bet", "same", "screen", "excited", "jet", "camp", "either", "experience", "scale", "also", "claws", "fix", "job", "engineer", "lips", "system", "use", "successful", "vapor", "car", "small", "partly", "swing", "thick", "level", "flow", "rod", "great", "moon", "worth", "band", "science", "low", "satellites", "material", "extra", "spent", "so", "imagine", "easy", "depth", "southern", "wooden", "troops", "leg", "respect", "leaving", "stranger", "triangle", "grade", "salt", "man", "within", "feel", "felt", "grow", "health", "manner", "smell", "blood", "hunt", "your", "perfect", "instrument", "blew", "design", "try", "charge", "firm", "yet", "do", "locate", "fairly", "cap", "wonderful", "exactly", "forgot", "it", "dinner", "forest", "sent", "plural", "origin", "left", "vowel", "source", "boat", "example", "surrounded", "put", "pictured", "action", "anywhere", "simply", "though", "rubber", "image", "moment", "power", "today", "anyone", "bag", "during", "quarter", "pleasure", "pitch", "each", "eleven", "private", "support", "birth", "observe", "explanation", "case", "outline", "temperature", "itself", "west", "upward", "visit", "alike", "table", "contrast", "fewer", "giving", "language", "return", "donkey", "duck", "six", "fallen", "doctor", "save", "figure", "party", "suggest", "wrong", "bowl", "green", "wool", "length", "teach", "gift", "ball", "characteristic", "season", "taken", "thumb", "dull", "around", "expect", "cowboy", "lunch", "calm", "chief", "model", "some", "meat", "teacher", "near", "belong", "him", "high", "speech", "zebra", "dig", "warm", "our", "color", "four", "cost", "fifth", "store", "swept", "seed", "worried", "worker", "prevent", "smaller", "pond", "driving", "spend", "noon", "airplane", "pair", "shoulder", "sharp", "thought", "rhythm", "end", "indicate", "income", "due", "treated", "rough", "deeply", "instead", "while", "laid"];
+    const convertToWords = (bytes) => {
+        let words = [];
+        for (let byte of bytes) {
+            words.push(wordList[byte]);
         }
-    </script>
-    <script>
-        // connection variables
-        let connected = false;
-        let handshaked = false;
-        let connection = null;
-        let peer = null;
-        // command variables
-        let inspections = false;
-        let fingerprint = "";
-        let safetyNumber = "Not calculated yet.";
-        // usability variables
-        let emoji = new EmojiConvertor();
-        emoji.allow_native = true;
-        emoji.replace_mode = "unified";
-        // cryptography variables
-        let session = {};
-        let ourKeys = {};
-        // check if storage is available
-        if (storageAvailable("localStorage")) {
-            // if there's no key, generate one
-            if (!localStorage.getItem("axolotlKey")) {
-                // generate and save the key
-                let key = nacl.box.keyPair();
-                localStorage.setItem("axolotlKey", toHexString(key.secretKey));
-                ourKeys.identityKey = key;
-                // notify the user
-                M.toast({ "html": "Axolotl identity key generated." });
-            } else {
-                // if there's no key, load it
-                ourKeys.identityKey = nacl.box.keyPair.fromSecretKey(fromHexString(localStorage.getItem("axolotlKey")));
-                // notify the user
-                M.toast({ "html": "Axolotl identity key loaded." });
-            }
-        } else {
-            // if there's no storage, generate a new keypair
-            ourKeys.identityKey = nacl.box.keyPair();
+        return words.join(" ");
+    };
+    const convertFromWords = (words) => {
+        let arr = [];
+        let wordArray = words.split(" ");
+        if (wordArray.length !== 32) return;
+        for (let word of wordArray) {
+            arr.push(wordList.indexOf(word));
+        }
+        return new Uint8Array(arr);
+    }
+</script>
+<script>
+    // connection variables
+    let connected = false;
+    let handshaked = false;
+    let connection = null;
+    let peer = null;
+    // command variables
+    let inspections = false;
+    let fingerprint = "";
+    let safetyNumber = "Not calculated yet.";
+    // usability variables
+    let emoji = new EmojiConvertor();
+    emoji.allow_native = true;
+    emoji.replace_mode = "unified";
+    const md = markdownit({
+        html: false,
+        linkify: true,
+        typographer: true
+    });
+    // cryptography variables
+    let session = {};
+    let ourKeys = {};
+    // check if storage is available
+    if (storageAvailable("localStorage")) {
+        // if there's no key, generate one
+        if (!localStorage.getItem("axolotlKey")) {
+            // generate and save the key
+            let key = nacl.box.keyPair();
+            localStorage.setItem("axolotlKey", toHexString(key.secretKey));
+            ourKeys.identityKey = key;
             // notify the user
-            M.toast({ "html": "Axolotl identity key generated." });
+            M.toast({"html": "Axolotl identity key generated."});
+        } else {
+            // if there's no key, load it
+            ourKeys.identityKey = nacl.box.keyPair.fromSecretKey(fromHexString(localStorage.getItem("axolotlKey")));
+            // notify the user
+            M.toast({"html": "Axolotl identity key loaded."});
         }
-        // once keys are loaded, set html
-        $("#terminal").html(`If you see this, you may not have been able to connect to the PeerJS server.<br>
+    } else {
+        // if there's no storage, generate a new keypair
+        ourKeys.identityKey = nacl.box.keyPair();
+        // notify the user
+        M.toast({"html": "Axolotl identity key generated."});
+    }
+    // once keys are loaded, set html
+    $("#terminal").html(`If you see this, you may not have been able to connect to the PeerJS server.<br>
 This is usually because someone is using your fingerprint.<br>
 Try changing your fingerprint or regenerating your key.`);
-        // scroll terminal to the bottom
-        const scrollToBottom = (id) => {
-            let div = document.getElementById(id);
-            div.scrollTop = div.scrollHeight - div.clientHeight;
-        };
-        // on connection
-        const onConn = (conn, initiator = false) => {
-            // if we're connected already, don't accept
-            if (connected) conn.close();
-            // set initial networking variables
+    // scroll terminal to the bottom
+    const scrollToBottom = (id) => {
+        let div = document.getElementById(id);
+        div.scrollTop = div.scrollHeight - div.clientHeight;
+    };
+    // on connection
+    const onConn = (conn, initiator = false) => {
+        // if we're connected already, don't accept
+        if (connected) conn.close();
+        // set initial networking variables
+        handshaked = false;
+        connected = true;
+        connection = conn;
+        // notify the user we're connected
+        M.toast({"html": "Connected."});
+        // generate a keypair for the handshake
+        ourKeys.handshakeKey = nacl.box.keyPair();
+        // when connection closes
+        conn.on("close", () => {
+            // reset network and crypto vars
+            connected = false;
+            connection = null;
+            session = {};
+            safetyNumber = "Not calculated yet.";
             handshaked = false;
-            connected = true;
-            connection = conn;
-            // notify the user we're connected
-            M.toast({ "html": "Connected." });
-            // generate a keypair for the handshake
-            ourKeys.handshakeKey = nacl.box.keyPair();
-            // when connection closes
-            conn.on("close", () => {
-                // reset network and crypto vars
-                connected = false;
-                connection = null;
-                session = {};
-                safetyNumber = "Not calculated yet.";
-                handshaked = false;
-                // clear the terminal
-                $("#terminal").html(`Welcome to wrongthink2 (${version})<br>
-See /help for help<br>`);
-                // notify user
-                M.toast({ "html": "Disconnected." });
-            });
-            // when we receive data
-            conn.on("data", (data) => {
-                // needs to run async for axolotl
-                (async () => {
-                    // if inspections are on, log the data
-                    if (inspections) {
-                        console.log("Received:");
-                        console.log(data);
-                    }
-                    /*
-                        handshake:
-                        client -> initiator (handshake key, identity key)
-                        initiator -> client (handshake key, identity key)
-                     */
-                    if (!initiator && !handshaked) {
-                        // if inspections are on, log the data
-                        if (inspections) {
-                            console.log("Sent:");
-                            console.log({
-                                identityKey: ourKeys.identityKey.publicKey,
-                                handshakeKey: ourKeys.handshakeKey.publicKey
-                            });
-                        }
-                        // send our identity and handshake key
-                        conn.send({
-                            "identityKey": ourKeys.identityKey.publicKey,
-                            "handshakeKey": ourKeys.handshakeKey.publicKey
-                        });
-                        // create a cryptographic session
-                        session = new secretSession();
-                        // preload the keys
-                        let theirIdentityKey = new Uint8Array(data.identityKey);
-                        let theirHandshakeKey = new Uint8Array(data.handshakeKey);
-                        // set up session
-                        await session.identity(ourKeys.identityKey)
-                            .handshake(ourKeys.handshakeKey)
-                            .theirIdentity(theirIdentityKey)
-                            .theirHandshake(theirHandshakeKey)
-                            .setRole("receiver")
-                            .computeMasterKey();
-                        // set safety number to 16 words (128 bits)
-                        // from nacl.hash(greatestFirstByte, leastFirstByte)
-                        safetyNumber = convertToWords(nacl.hash(new Uint8Array(theirIdentityKey > ourKeys.identityKey.publicKey ?
-                            [...theirIdentityKey, ...ourKeys.identityKey.publicKey] : [...ourKeys.identityKey.publicKey, ...theirIdentityKey]
-                        )).slice(0, 16));
-                        // we've handshaked
-                        handshaked = true;
-                        // notify the user
-                        M.toast({ "html": "Session is now secure. Check /safety." });
-                    } else if (!handshaked) {
-                        // if the above didn't run, we're initiator
-                        // generate new session
-                        session = new secretSession();
-                        // preload the keys
-                        let theirIdentityKey = new Uint8Array(data.identityKey);
-                        let theirHandshakeKey = new Uint8Array(data.handshakeKey);
-                        // set up session
-                        await session.identity(ourKeys.identityKey)
-                            .handshake(ourKeys.handshakeKey)
-                            .theirIdentity(theirIdentityKey)
-                            .theirHandshake(theirHandshakeKey)
-                            .setRole("initiator")
-                            .computeMasterKey();
-                        // set safety number to 16 words (128 bits)
-                        // from nacl.hash(greatestFirstByte, leastFirstByte)
-                        safetyNumber = convertToWords(nacl.hash(new Uint8Array(theirIdentityKey > ourKeys.identityKey.publicKey ?
-                            [...theirIdentityKey, ...ourKeys.identityKey.publicKey] : [...ourKeys.identityKey.publicKey, ...theirIdentityKey]
-                        )).slice(0, 16));
-                        // we've handshaked
-                        handshaked = true;
-                        // notify the user
-                        M.toast({ "html": "Session is now secure. Check /safety." });
-                    } else {
-                        // if we've handshaked, decrypt the message
-                        let msg = await session.decrypt(data);
-                        // append <anon> parseEmojis(parseMarkdown(sanitizeHtml(message))) to terminal
-                        $("#terminal").append("&lt;anon&gt; " + twemoji.parse(marked.parseInline(HtmlSanitizer.SanitizeHtml(msg.cleartext))) + "<br>");
-                        // scroll to bottom of terminal
-                        scrollToBottom("terminal");
-                    }
-                })();
-            });
-            // if we're initiator, we'll need to send our key when the connection opens
-            if (initiator) conn.on("open", () => {
+            // clear the terminal
+            $("#terminal").html(`<h4>Welcome to wrongthink2 (${version})<br>
+See /help for help<br></h4>`);
+            // notify user
+            M.toast({"html": "Disconnected."});
+        });
+        // when we receive data
+        conn.on("data", (data) => {
+            // needs to run async for axolotl
+            (async () => {
                 // if inspections are on, log the data
                 if (inspections) {
-                    console.log("Sent:");
-                    console.log({
-                        identityKey: ourKeys.identityKey.publicKey,
-                        handshakeKey: ourKeys.handshakeKey.publicKey
-                    });
+                    console.log("Received:");
+                    console.log(data);
                 }
-                // send our identity and handshake keys
-                conn.send({
+                /*
+                    handshake:
+                    client -> initiator (handshake key, identity key)
+                    initiator -> client (handshake key, identity key)
+                 */
+                if (!initiator && !handshaked) {
+                    // if inspections are on, log the data
+                    if (inspections) {
+                        console.log("Sent:");
+                        console.log({
+                            identityKey: ourKeys.identityKey.publicKey,
+                            handshakeKey: ourKeys.handshakeKey.publicKey
+                        });
+                    }
+                    // send our identity and handshake key
+                    conn.send({
+                        "identityKey": ourKeys.identityKey.publicKey,
+                        "handshakeKey": ourKeys.handshakeKey.publicKey
+                    });
+                    // create a cryptographic session
+                    session = new secretSession();
+                    // preload the keys
+                    let theirIdentityKey = new Uint8Array(data.identityKey);
+                    let theirHandshakeKey = new Uint8Array(data.handshakeKey);
+                    // set up session
+                    await session.identity(ourKeys.identityKey)
+                        .handshake(ourKeys.handshakeKey)
+                        .theirIdentity(theirIdentityKey)
+                        .theirHandshake(theirHandshakeKey)
+                        .setRole("receiver")
+                        .computeMasterKey();
+                    // set safety number to 16 words (128 bits)
+                    // from nacl.hash(greatestFirstByte, leastFirstByte)
+                    safetyNumber = convertToWords(nacl.hash(new Uint8Array(theirIdentityKey > ourKeys.identityKey.publicKey ?
+                        [...theirIdentityKey, ...ourKeys.identityKey.publicKey] : [...ourKeys.identityKey.publicKey, ...theirIdentityKey]
+                    )).slice(0, 16));
+                    // we've handshaked
+                    handshaked = true;
+                    // notify the user
+                    M.toast({"html": "Session is now secure. Check /safety."});
+                } else if (!handshaked) {
+                    // if the above didn't run, we're initiator
+                    // generate new session
+                    session = new secretSession();
+                    // preload the keys
+                    let theirIdentityKey = new Uint8Array(data.identityKey);
+                    let theirHandshakeKey = new Uint8Array(data.handshakeKey);
+                    // set up session
+                    await session.identity(ourKeys.identityKey)
+                        .handshake(ourKeys.handshakeKey)
+                        .theirIdentity(theirIdentityKey)
+                        .theirHandshake(theirHandshakeKey)
+                        .setRole("initiator")
+                        .computeMasterKey();
+                    // set safety number to 16 words (128 bits)
+                    // from nacl.hash(greatestFirstByte, leastFirstByte)
+                    safetyNumber = convertToWords(nacl.hash(new Uint8Array(theirIdentityKey > ourKeys.identityKey.publicKey ?
+                        [...theirIdentityKey, ...ourKeys.identityKey.publicKey] : [...ourKeys.identityKey.publicKey, ...theirIdentityKey]
+                    )).slice(0, 16));
+                    // we've handshaked
+                    handshaked = true;
+                    // notify the user
+                    M.toast({"html": "Session is now secure. Check /safety."});
+                } else {
+                    // if we've handshaked, decrypt the message
+                    let msg = await session.decrypt(data);
+                    // append <anon> parseEmojis(parseMarkdown(sanitizeHtml(message))) to terminal
+                    $("#terminal").append("&lt;anon&gt; " + twemoji.parse(md.renderInline(msg.cleartext)) + "<br>");
+                    // scroll to bottom of terminal
+                    scrollToBottom("terminal");
+                }
+            })();
+        });
+        // if we're initiator, we'll need to send our key when the connection opens
+        if (initiator) conn.on("open", () => {
+            // if inspections are on, log the data
+            if (inspections) {
+                console.log("Sent:");
+                console.log({
                     identityKey: ourKeys.identityKey.publicKey,
                     handshakeKey: ourKeys.handshakeKey.publicKey
-                })
-            });
-        };
-        // initialize the peer for peerjs
-        const peerInit = async (specifiedFingerprint = null) => {
-            // if a fingerprint isn't specified, generate one
-            if (!specifiedFingerprint) (() => {
-                // fingerprint is first 10 digits of hash of the public key
-                // TODO: make command to verify fingerprints
-                if (storageAvailable("localStorage")) {
-                    if (localStorage.getItem("fingerprint")) {
-                        fingerprint = localStorage.getItem("fingerprint");
-                        return;
-                    }
+                });
+            }
+            // send our identity and handshake keys
+            conn.send({
+                identityKey: ourKeys.identityKey.publicKey,
+                handshakeKey: ourKeys.handshakeKey.publicKey
+            })
+        });
+    };
+    // initialize the peer for peerjs
+    const peerInit = async (specifiedFingerprint = null) => {
+        // if a fingerprint isn't specified, generate one
+        if (!specifiedFingerprint) (() => {
+            // fingerprint is first 10 digits of hash of the public key
+            // TODO: make command to verify fingerprints
+            if (storageAvailable("localStorage")) {
+                if (localStorage.getItem("fingerprint")) {
+                    fingerprint = localStorage.getItem("fingerprint");
+                    return;
                 }
-                fingerprint = convertToWords(nacl.hash(ourKeys.identityKey.publicKey).slice(0, 8)).replace(/ /g, "-");
-            })();
-            // if fingerprint is specified, set it
-            else fingerprint = specifiedFingerprint;
-            // create a peer instance with the fingerprint
-            peer = new Peer(fingerprint, {
-                "host": "wrongthink.me",
-                "port": 8080,
-                "secure": true
-            });
-            // when the peer is ready
-            peer.on("open", (id) => {
-                // clear the terminal when open
-                $("#terminal").html(`Welcome to wrongthink2 (${version})<br>
-See /help for help<br>`);
-                // log the fingerprint
-                // set modal header
-                $("#header").html("Fingerprint")
-                // set modal text
-                $("#text").html(`Your fingerprint is: <pre>${id}</pre> Send this to your friend if they want to talk to you.`);
-                // display modal
-                $("#modal1").modal("open");
-            });
-            // on connection, let onConn() handle it
-            peer.on("connection", (conn) => onConn(conn, false));
-        };
-        // if storage is available
-        if (storageAvailable("localStorage")) {
-            // if there's a custom fingerprint saved, init peer with the fingerprint
-            if (localStorage.getItem("fingerprint")) peerInit(localStorage.getItem("fingerprint"));
-            // otherwise, init it without
-            else peerInit();
-        } else peerInit();
-        // ^ no storage? just init it without
-        // on message, async because of axolotl
-        const message = async () => {
-            // split message into args for commands
-            let msg = $("#message").val().split(" ");
-            // if the message starts with /, it's probably a command
-            if (msg[0].startsWith("/")) {
-                // switch cases for command
-                switch (msg[0]) {
-                    // help command
-                    case "/help": {
-                        // set modal header html
-                        $("#header").html("Commands");
-                        // set modal body html
-                        $("#text").html(`/help - Displays help<br>
+            }
+            fingerprint = convertToWords(nacl.hash(ourKeys.identityKey.publicKey).slice(0, 8)).replace(/ /g, "-");
+        })();
+        // if fingerprint is specified, set it
+        else fingerprint = specifiedFingerprint;
+        // create a peer instance with the fingerprint
+        peer = new Peer(fingerprint, {
+            "host": "wrongthink.me",
+            "port": 8080,
+            "secure": true
+        });
+        // when the peer is ready
+        peer.on("open", (id) => {
+            // clear the terminal when open
+            $("#terminal").html(`<h4>Welcome to wrongthink2 (${version})<br>
+See /help for help<br></h4>`);
+            // log the fingerprint
+            // set modal header
+            $("#header").html("Fingerprint")
+            // set modal text
+            $("#text").html(`Your fingerprint is: <pre>${id}</pre> Send this to your friend if they want to talk to you.`);
+            // display modal
+            $("#modal1").modal("open");
+        });
+        // on connection, let onConn() handle it
+        peer.on("connection", (conn) => onConn(conn, false));
+    };
+    // if storage is available
+    if (storageAvailable("localStorage")) {
+        // if there's a custom fingerprint saved, init peer with the fingerprint
+        if (localStorage.getItem("fingerprint")) peerInit(localStorage.getItem("fingerprint"));
+        // otherwise, init it without
+        else peerInit();
+    } else peerInit();
+    // ^ no storage? just init it without
+    // on message, async because of axolotl
+    const message = async () => {
+        // split message into args for commands
+        let msg = $("#message").val().split(" ");
+        // if the message starts with /, it's probably a command
+        if (msg[0].startsWith("/")) {
+            // switch cases for command
+            switch (msg[0]) {
+                // help command
+                case "/help": {
+                    // set modal header html
+                    $("#header").html("Commands");
+                    // set modal body html
+                    $("#text").html(`/help - Displays help<br>
 /connect (fingerprint) - Connects to peer with specified fingerprint<br>
 /disconnect - Disconnects from other client<br>
 /clear - Clears console<br>
@@ -424,230 +460,230 @@ See /help for help<br>`);
 /custom (fingerprint?) - Sets custom fingerprint. Don't input anything to disable.<br>
 /inspect - Toggles inspections (view what the client sends and receives).<br>
 /verify - Verifies that the peer's fingerprint is valid.`);
-                        // open modal
-                        $(".modal").modal("open");
-                        // clear the message box
-                        $("#message").val("");
+                    // open modal
+                    $(".modal").modal("open");
+                    // clear the message box
+                    $("#message").val("");
+                    return;
+                }
+                // connect command
+                case "/connect": {
+                    // notify user we're connecting
+                    M.toast({"html": "Connecting..."});
+                    // connect to other peer with fingerprint (make sure it's reliable)
+                    let conn = peer.connect(msg[1], {reliable: true});
+                    // let onConn() handle the connection
+                    onConn(conn, true);
+                    // clear the message box
+                    $("#message").val("");
+                    return;
+                }
+                // clear command
+                case "/clear": {
+                    // clear the terminal
+                    $("#terminal").html(`<h4>Welcome to wrongthink2 (${version})<br>
+See /help for help<br></h4>`);
+                    // notify the user
+                    M.toast({"html": "Cleared console."});
+                    // clear the message box
+                    $("#message").val("");
+                    return;
+                }
+                // disconnect command
+                case "/disconnect": {
+                    // if we're not connected, don't run
+                    if (!connected) {
+                        // notify user
+                        M.toast({html: "You are not connected."});
                         return;
                     }
-                    // connect command
-                    case "/connect": {
-                        // notify user we're connecting
-                        M.toast({ "html": "Connecting..." });
-                        // connect to other peer with fingerprint (make sure it's reliable)
-                        let conn = peer.connect(msg[1], { reliable: true });
-                        // let onConn() handle the connection
-                        onConn(conn, true);
-                        // clear the message box
-                        $("#message").val("");
+                    // close the connection
+                    connection.close();
+                    // clear the message box
+                    $("#message").val("");
+                    return;
+                }
+                // safety word command
+                case "/safety": {
+                    // if we're not connected, don't run
+                    if (!handshaked) {
+                        // notify user
+                        M.toast({html: "Safety words are not available."});
                         return;
                     }
-                    // clear command
-                    case "/clear": {
-                        // clear the terminal
-                        $("#terminal").html(`Welcome to wrongthink2 (${version})<br>
-See /help for help<br>`);
-                        // notify the user
-                        M.toast({ "html": "Cleared console." });
-                        // clear the message box
-                        $("#message").val("");
+                    // clear the message box
+                    $("#message").val("");
+                    // set modal header html
+                    $("#header").html("Safety words");
+                    // set modal text html
+                    $("#text").html(`Your safety words: <pre>${safetyNumber}</pre> Make sure your safety words match before chatting!`);
+                    // open the modal
+                    $("#modal1").modal("open");
+                    return;
+                }
+                // verification command
+                case "/verify": {
+                    // if we're not connected, don't run
+                    if (!handshaked) {
+                        // notify user
+                        M.toast({html: "Verification is not possible."});
                         return;
                     }
-                    // disconnect command
-                    case "/disconnect": {
-                        // if we're not connected, don't run
-                        if (!connected) {
-                            // notify user
-                            M.toast({ html: "You are not connected." });
-                            return;
-                        }
-                        // close the connection
-                        connection.close();
-                        // clear the message box
-                        $("#message").val("");
-                        return;
-                    }
-                    // safety word command
-                    case "/safety": {
-                        // if we're not connected, don't run
-                        if (!handshaked) {
-                            // notify user
-                            M.toast({ html: "Safety words are not available." });
-                            return;
-                        }
-                        // clear the message box
-                        $("#message").val("");
-                        // set modal header html
-                        $("#header").html("Safety words");
-                        // set modal text html
-                        $("#text").html(`Your safety words: <pre>${safetyNumber}</pre> Make sure your safety words match before chatting!`);
-                        // open the modal
-                        $("#modal1").modal("open");
-                        return;
-                    }
-                    // verification command
-                    case "/verify": {
-                        // if we're not connected, don't run
-                        if (!handshaked) {
-                            // notify user
-                            M.toast({ html: "Verification is not possible." });
-                            return;
-                        }
-                        // clear the message box
-                        $("#message").val("");
-                        // display the result
-                        M.toast({
-                                 // our calculated fingerprint                                                           eq. peer's fingerprint
-                            "html": convertToWords(nacl.hash(session.theirIdentityKey).slice(0, 8)).replace(/ /g, "-") === connection.peer ? "Fingerprint verified." : "Could not verify fingerprint."
-                        });
-                        return;
-                    }
-                    // fingerprint command
-                    case "/fingerprint": {
-                        // clear the message box
-                        $("#message").val("");
-                        // log the fingerprint
-                        // set modal header
-                        $("#header").html("Fingerprint")
-                        // set modal text
-                        $("#text").html(`Your fingerprint is: <pre>${fingerprint}</pre> Send this to your friend if they want to talk to you.`);
-                        // display modal
-                        $("#modal1").modal("open");
-                        return;
-                    }
-                    // key export command
-                    case "/export": {
-                        // clear the message box
-                        $("#message").val("");
-                        // set modal header html
-                        $("#header").html("Private key");
-                        // set modal text html to a textarea with the key
-                        $("#text").html(`Your private key: <textarea readonly type="text" class="materialize-textarea grey-text text-lighten-5" id="lel" onclick="$(this).focus(); $(this).select(); document.execCommand('copy'); window.getSelection().removeAllRanges(); M.toast({ html: 'Copied!' });">${convertToWords(ourKeys.identityKey.secretKey)}</textarea><br><b>Keep this value safe!</b>`);
-                        // resize the textarea
-                        M.textareaAutoResize($("#lel"));
-                        // open the modal
-                        $("#modal1").modal("open");
-                        return;
-                    }
-                    // key import command
-                    case "/import": {
-                        // clear the message box
-                        $("#message").val("");
-                        // remove the first arg in msg
-                        msg.splice(0, 1);
-                        // try to import
-                        try {
-                            // load in the key
-                            let key = nacl.box.keyPair.fromSecretKey(convertFromWords(msg.join(" ")));
-                            // disconnect the peer
-                            peer.destroy();
-                            // set the identity key
-                            ourKeys.identityKey = key;
-                            // initialize the peer again
-                            peerInit();
-                            // if storage is available, set it
-                            if (storageAvailable("localStorage")) localStorage.setItem("axolotlKey", toHexString(key.secretKey));
-                            // notify user of import
-                            M.toast({ "html": "Key imported." });
-                        } catch (e) {
-                            // notify user we failed
-                            M.toast({ "html": "Import failed." });
-                            return;
-                        }
-                        return;
-                    }
-                    // key regeneration command
-                    case "/regenerate": {
-                        // disconnect peer
+                    // clear the message box
+                    $("#message").val("");
+                    // display the result
+                    M.toast({
+                        // our calculated fingerprint                                                           eq. peer's fingerprint
+                        "html": convertToWords(nacl.hash(session.theirIdentityKey).slice(0, 8)).replace(/ /g, "-") === connection.peer ? "Fingerprint verified." : "Could not verify fingerprint."
+                    });
+                    return;
+                }
+                // fingerprint command
+                case "/fingerprint": {
+                    // clear the message box
+                    $("#message").val("");
+                    // log the fingerprint
+                    // set modal header
+                    $("#header").html("Fingerprint")
+                    // set modal text
+                    $("#text").html(`Your fingerprint is: <pre>${fingerprint}</pre> Send this to your friend if they want to talk to you.`);
+                    // display modal
+                    $("#modal1").modal("open");
+                    return;
+                }
+                // key export command
+                case "/export": {
+                    // clear the message box
+                    $("#message").val("");
+                    // set modal header html
+                    $("#header").html("Private key");
+                    // set modal text html to a textarea with the key
+                    $("#text").html(`Your private key: <textarea readonly type="text" class="materialize-textarea grey-text text-lighten-5" id="lel" onclick="$(this).focus(); $(this).select(); document.execCommand('copy'); window.getSelection().removeAllRanges(); M.toast({ html: 'Copied!' });">${convertToWords(ourKeys.identityKey.secretKey)}</textarea><br><b>Keep this value safe!</b>`);
+                    // resize the textarea
+                    M.textareaAutoResize($("#lel"));
+                    // open the modal
+                    $("#modal1").modal("open");
+                    return;
+                }
+                // key import command
+                case "/import": {
+                    // clear the message box
+                    $("#message").val("");
+                    // remove the first arg in msg
+                    msg.splice(0, 1);
+                    // try to import
+                    try {
+                        // load in the key
+                        let key = nacl.box.keyPair.fromSecretKey(convertFromWords(msg.join(" ")));
+                        // disconnect the peer
                         peer.destroy();
-                        // clear the message box
-                        $("#message").val("");
-                        // generate a new keypair
-                        let key = nacl.box.keyPair();
-                        // if we have localstorage, save it
-                        if (storageAvailable("localStorage")) localStorage.setItem("axolotlKey", toHexString(key.secretKey));
-                        // set the key
+                        // set the identity key
                         ourKeys.identityKey = key;
                         // initialize the peer again
                         peerInit();
-                        // notify the user
-                        M.toast({ "html": "Key regenerated." });
+                        // if storage is available, set it
+                        if (storageAvailable("localStorage")) localStorage.setItem("axolotlKey", toHexString(key.secretKey));
+                        // notify user of import
+                        M.toast({"html": "Key imported."});
+                    } catch (e) {
+                        // notify user we failed
+                        M.toast({"html": "Import failed."});
                         return;
                     }
-                    // custom fingerprint command
-                    case "/custom": {
-                        // clear the message box
-                        $("#message").val("");
-                        // disconnect peer
-                        peer.destroy();
-                        // if there's a fingerprint, init peer with it
-                        if (msg[1]) peerInit(msg[1]);
-                        // otherwise, init without it (user is trying to toggle)
-                        else if (!storageAvailable("localStorage")) peerInit();
-                        // if localstorage is available
-                        if (storageAvailable("localStorage")) {
-                            // if fingerprint was set, set it
-                            if (msg[1]) localStorage.setItem("fingerprint", msg[1]);
-                            // otherwise, remove it
-                            else {
-                                localStorage.removeItem("fingerprint");
-                                // if localstorage exists we init here
-                                peerInit();
-                            }
+                    return;
+                }
+                // key regeneration command
+                case "/regenerate": {
+                    // disconnect peer
+                    peer.destroy();
+                    // clear the message box
+                    $("#message").val("");
+                    // generate a new keypair
+                    let key = nacl.box.keyPair();
+                    // if we have localstorage, save it
+                    if (storageAvailable("localStorage")) localStorage.setItem("axolotlKey", toHexString(key.secretKey));
+                    // set the key
+                    ourKeys.identityKey = key;
+                    // initialize the peer again
+                    peerInit();
+                    // notify the user
+                    M.toast({"html": "Key regenerated."});
+                    return;
+                }
+                // custom fingerprint command
+                case "/custom": {
+                    // clear the message box
+                    $("#message").val("");
+                    // disconnect peer
+                    peer.destroy();
+                    // if there's a fingerprint, init peer with it
+                    if (msg[1]) peerInit(msg[1]);
+                    // otherwise, init without it (user is trying to toggle)
+                    else if (!storageAvailable("localStorage")) peerInit();
+                    // if localstorage is available
+                    if (storageAvailable("localStorage")) {
+                        // if fingerprint was set, set it
+                        if (msg[1]) localStorage.setItem("fingerprint", msg[1]);
+                        // otherwise, remove it
+                        else {
+                            localStorage.removeItem("fingerprint");
+                            // if localstorage exists we init here
+                            peerInit();
                         }
-                        // notify the user
-                        M.toast({ "html": (msg[1] ? "Set" : "Unset") + " custom fingerprint." });
-                        return;
                     }
-                    // debug command
-                    case "/inspect": {
-                        // clear the message box
-                        $("#message").val("");
-                        // toggle the inspections variable
-                        inspections = !inspections;
-                        // notify the user
-                        M.toast({ "html": (inspections ? "Enabled" : "Disabled") + " inspections." });
-                        return;
-                    }
+                    // notify the user
+                    M.toast({"html": (msg[1] ? "Set" : "Unset") + " custom fingerprint."});
+                    return;
+                }
+                // debug command
+                case "/inspect": {
+                    // clear the message box
+                    $("#message").val("");
+                    // toggle the inspections variable
+                    inspections = !inspections;
+                    // notify the user
+                    M.toast({"html": (inspections ? "Enabled" : "Disabled") + " inspections."});
+                    return;
                 }
             }
-            // --- END OF COMMAND CHECK ---
-            // if we're not connected, there is no message, or we're not handshaked, do nothing
-            if (!connected || msg.join("") === "" || !handshaked) return;
-            // append <you> parseEmojis(parseMarkdown(sanitizeHtml(emojify(message)))) to terminal
-            $("#terminal").append("&lt;you&gt; " + twemoji.parse(marked.parseInline(HtmlSanitizer.SanitizeHtml(emoji.replace_colons(msg.join(" "))))) + "<br>");
-            // scroll terminal to bottom
-            scrollToBottom("terminal");
-            // encrypt emojify(message)
-            let encrypted = await session.encrypt(emoji.replace_colons(msg.join(" ")));
-            // if inspections are on, log the message
-            if (inspections) {
-                console.log("Sent:");
-                console.log(encrypted);
+        }
+        // --- END OF COMMAND CHECK ---
+        // if we're not connected, there is no message, or we're not handshaked, do nothing
+        if (!connected || msg.join("") === "" || !handshaked) return;
+        // append <you> parseEmojis(parseMarkdown(sanitizeHtml(emojify(message)))) to terminal
+        $("#terminal").append("&lt;you&gt; " + twemoji.parse(md.renderInline(emoji.replace_colons(msg.join(" ")))) + "<br>");
+        // scroll terminal to bottom
+        scrollToBottom("terminal");
+        // encrypt emojify(message)
+        let encrypted = await session.encrypt(emoji.replace_colons(msg.join(" ")));
+        // if inspections are on, log the message
+        if (inspections) {
+            console.log("Sent:");
+            console.log(encrypted);
+        }
+        // send the encrypted message
+        connection.send(encrypted);
+        // clear the message box
+        $("#message").val("");
+    };
+    // when document's ready
+    $(document).ready(() => {
+        // initialize the modals
+        $(".modal").modal();
+        // make message() run on keypress
+        $("#message").on("keypress", (e) => {
+            // if key is enter, run message()
+            if (e.key === "Enter") {
+                message();
             }
-            // send the encrypted message
-            connection.send(encrypted);
-            // clear the message box
-            $("#message").val("");
-        };
-        // when document's ready
-        $(document).ready(() => {
-            // initialize the modals
-            $(".modal").modal();
-            // make message() run on keypress
-            $("#message").on("keypress", (e) => {
-                // if key is enter, run message()
-                if (e.key === "Enter") {
-                    message();
-                }
-            });
-            // make the connection and peer close before user navigates away
-            $(window).on("beforeunload", (e) => {
-                // disconnect the peer
-                peer.destroy();
-            });
         });
-    </script>
+        // make the connection and peer close before user navigates away
+        $(window).on("beforeunload", (e) => {
+            // disconnect the peer
+            peer.destroy();
+        });
+    });
+</script>
 </body>
 
 </html>
