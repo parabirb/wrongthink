@@ -66,6 +66,10 @@ or parabirb#9968
             flex: 1;
         }
 
+        main h1, main h2, main h3, main h4, main h5, main h6, main p {
+            display: inline;
+        }
+
         footer {
             margin: 1vw;
         }
@@ -366,7 +370,7 @@ See /help for help<br></h4>`);
                     // if we've handshaked, decrypt the message
                     let msg = await session.decrypt(data);
                     // append <anon> parseEmojis(parseMarkdown(sanitizeHtml(message))) to terminal
-                    $("#terminal").append("&lt;anon&gt; " + twemoji.parse(md.renderInline(msg.cleartext)) + "<br>");
+                    $("#terminal").append("&lt;anon&gt; " + twemoji.parse(md.render(msg.cleartext)) + "<br>");
                     // scroll to bottom of terminal
                     scrollToBottom("terminal");
                 }
@@ -651,7 +655,7 @@ See /help for help<br></h4>`);
         // if we're not connected, there is no message, or we're not handshaked, do nothing
         if (!connected || msg.join("") === "" || !handshaked) return;
         // append <you> parseEmojis(parseMarkdown(sanitizeHtml(emojify(message)))) to terminal
-        $("#terminal").append("&lt;you&gt; " + twemoji.parse(md.renderInline(emoji.replace_colons(msg.join(" ")))) + "<br>");
+        $("#terminal").append("&lt;you&gt; " + twemoji.parse(md.render(emoji.replace_colons(msg.join(" ")))) + "<br>");
         // scroll terminal to bottom
         scrollToBottom("terminal");
         // encrypt emojify(message)
