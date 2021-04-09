@@ -14,7 +14,7 @@ wrongthink.me would not be possible without the following libraries:
 * [HtmlSanitizer (security)](https://github.com/jitbit/htmlsanitizer)
 * [MaterializeCSS (UI)](https://github.com/materializecss/materialize)
 * [JQuery (UI)](https://github.com/jquery/jquery)
-* [Marked (UI)](https://github.com/markedjs/marked)
+* [markdown-it (UI)](https://github.com/markdown-it/markdown-it)
 * [js-emoji (UI)](https://github.com/iamcal/js-emoji)
 * [twemoji (UI)](https://github.com/twitter/twemoji)
 
