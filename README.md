@@ -48,3 +48,5 @@ no warranty is provided with this software and you waive all liability blah blah
 
 ## WOKE!!!
 no political pandering will ever take place on the site or in the repo. wrongthink will always be wrongthink and nothing more. i might put some memes on the page from time to time though.
+
+[wrongthink.me will never accept cryptocurrency donations](https://www.schneier.com/blog/archives/2021/04/wtf-signal-adds-cryptocurrency-support.html)
